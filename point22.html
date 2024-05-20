@@ -1,0 +1,210 @@
+<html lang="en">
+<head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title> MONKEYEVERYDAY LEARNING SPACE </title>
+    
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+        crossorigin=""/>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+        crossorigin="">
+    </script>
+
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+    <link rel="stylesheet" href="style.css" />
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-size: 12;
+            font-family: sans-serif;
+        }
+
+        #mapid{
+            width: 45%;
+            height: 90%;
+            margin-top: 5px;
+            margin-left: 5%;
+        }
+
+        .content{
+            margin-top: 5px;
+            margin-left: 60px;
+            margin-right: 60px;
+        }
+
+        .container {
+            display: flex;
+            background: #ffffff;
+        }
+
+        .navbar {
+            margin-left: 60px;
+            padding: 0.5rem 1.5rem;
+            background: #ffffff;
+            border-radius: 1rem;
+        }
+
+        .w3-table {
+            width: 550px;
+            }
+
+    </style>
+</head>
+
+<body>
+
+    <div class = "container">
+        <nav class = "navbar">
+            <div class = "navdiv">
+                <div class = "logo"><a href = "index.html"><img src = "https://github.com/sr120899/Image_mini/blob/main/logo.png?raw=true" height = "25px"></a></div>
+            </div>
+        </nav>
+    </div>
+
+    <div class = "w3-row">
+
+        <!-- ส่วนซ้ายแสดงแผนที่ -->
+        <div id = "mapid" class = "w3-half"></div>
+
+        <!-- ส่วนขวาแสดง ข้อมูลตาราง -->
+        <div id = "content" class = "w3-half">
+            <div class = "content">
+            <div class = "content">
+                <div class = "product-imgs">
+                    <div class = "img-display">
+                    <div class = "img-showcase">
+                    <img src = " https://github.com/Gamgezz/iimage-pj/blob/main/22.jpg?raw=true " alt = "place">
+                    <img src = " https://github.com/Gamgezz/iimage-pj/blob/main/22.1.jpg?raw=true " alt = "place">
+                    <img src = " https://github.com/Gamgezz/iimage-pj/blob/main/22.2.jpg?raw=true " alt = "place">
+                    <img src = " https://github.com/Gamgezz/iimage-pj/blob/main/22.3.jpg?raw=true " alt = "place">
+                    </div>
+                    </div>
+                    <div class = "img-select">
+                    <div class = "img-item">
+                    <a href = "#" data-id = "1">
+                    <img src = " https://github.com/Gamgezz/iimage-pj/blob/main/22.jpg?raw=true " alt = "place">
+                    </a>
+                    </div>
+                    <div class = "img-item">
+                    <a href = "#" data-id = "2">
+                    <img src = " https://github.com/Gamgezz/iimage-pj/blob/main/22.1.jpg?raw=true " alt = "place">
+                    </a>
+                    </div>
+                    <div class = "img-item">
+                    <a href = "#" data-id = "3">
+                    <img src = " https://github.com/Gamgezz/iimage-pj/blob/main/22.2.jpg?raw=true " alt = "place">
+                    </a>
+                    </div>
+                    <div class = "img-item">
+                    <a href = "#" data-id = "4">
+                    <img src = " https://github.com/Gamgezz/iimage-pj/blob/main/22.3.jpg?raw=true " alt = "place">
+                    </a>
+                    </div>
+                    
+                    </div>
+                </div>
+                           
+                <p>
+                    <hr><h6> MONKEYEVERYDAY LEARNING SPACE </h6><hr>
+                </p>
+
+                <table class = "w3-table w3-half">
+                    <tr>
+                    <td>&nbsp; 🏢 &nbsp; เป็น co-working space </td>
+                    <th>รูปแบบ</th>
+                    <th>สิ่งอำนวยความสะดวก</th>
+                    </tr>
+                    <tr>
+                    <td>&nbsp; 🕑 &nbsp; เปิดให้บริการ วันจันทร์ - อาทิตย์</td>
+                    <td>&nbsp; 🔘 &nbsp; Private office</td>
+                    <td>&nbsp; 🔘 &nbsp; Projector and TV Connector</td>
+                    </tr>
+                    <tr>
+                    <td>&nbsp; 🕑 &nbsp; เวลา 10.00 - 19.00 น. </td>
+                    <td>&nbsp; ✔️ &nbsp; ห้องประชุม</td>
+                    <td>&nbsp; ✔️ &nbsp; เครื่องถ่ายเอกสาร</td>
+                    </tr>
+                    <tr>
+                    <td>&nbsp; 🚉 &nbsp; ใกล้สถานี BTS สนามกีฬาแห่งชาติ</td>
+                    <td>&nbsp; 🔘 &nbsp; Event space</td>
+                    <td>&nbsp; 🔘 &nbsp; ห้องอาบน้ำ</td>
+                    </tr>
+                    </table>
+                    
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </table>
+        </div>
+    </div>
+
+    <script type = "text/javascript" src = "script-point.js"></script>
+    
+    <script>
+        //เรียกแผนที่
+        var map = L.map("mapid").setView([13.744761, 100.529868], 17);
+        
+        //เรียก based map
+        var Esri_WorldTopoMap = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}', {
+            attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ, TomTom, Intermap, iPC, USGS, FAO, NPS, NRCAN, GeoBase, Kadaster NL, Ordnance Survey, Esri Japan, METI, Esri China (Hong Kong), and the GIS User Community'
+        });
+        Esri_WorldTopoMap.addTo(map);
+        var Esri_WorldImagery = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+            attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
+        });
+        var Esri_WorldStreetMap = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
+	        attribution: 'Tiles &copy; Esri &mdash; Source: Esri, DeLorme, NAVTEQ, USGS, Intermap, iPC, NRCAN, Esri Japan, METI, Esri China (Hong Kong), Esri (Thailand), TomTom, 2012'
+        });
+        var googleStreets = L.tileLayer('http://{s}.google.com/vt?lyrs=m&x={x}&y={y}&z={z}',{
+            maxZoom: 20,
+            subdomains:['mt0','mt1','mt2','mt3']
+        });
+        
+        var baseLayers = {
+            "TopoMap" : Esri_WorldTopoMap , 
+            "OSM" : Esri_WorldStreetMap ,
+            "Satellite" : Esri_WorldImagery ,
+            "GoogleOSM" : googleStreets
+        } 
+        L.control.layers(baseLayers).addTo(map);
+
+        //add marker and popup
+        const customIcon = L.icon({
+            iconUrl: "https://github.com/sr120899/Image_mini/blob/main/logo1.png?raw=true",
+            iconSize: [70, 70],
+        });
+
+        // เพิ่ม point
+        // 1
+        L.marker([13.744761, 100.529868], {
+            title: " MONKEYEVERYDAY LEARNING SPACE ",
+            icon: customIcon,
+        }).bindPopup(`
+        <span class = "popup">
+            <b><center> MONKEYEVERYDAY LEARNING SPACE </center></b>
+        </span>
+        `).addTo(map)
+    
+        //place
+        const btsIcon = L.icon({
+            iconUrl: "https://github.com/sr120899/Image_mini/blob/main/logo-bts.png?raw=true",
+            iconSize: [40, 40],
+        });
+        
+        L.marker([13.746367, 100.529033], {
+            title: " bts สนามกีฬาแห่งชาติ ",
+            icon: btsIcon,
+        }).addTo(map)
+    </script>
+    
+</body>
+</html>
