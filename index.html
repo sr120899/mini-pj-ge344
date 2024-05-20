@@ -1,0 +1,626 @@
+<html lang="en">
+<head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>HOME</title>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+        crossorigin=""/>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+        crossorigin="">
+    </script>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: sans-serif;
+        }
+
+        body {
+            font-family: sans-serif;
+            font-size: 10;
+        }
+
+        #map {
+            margin-top: 5px;
+            margin-left: 5%;
+            width: 90%;
+            height: 80%;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .legend {
+            line-height: 40px;
+            color: #000000;
+            background-color: rgb(255, 255, 255);
+            width: 180px;
+            height: 90px;
+        }
+
+        .container {
+            display: flex;
+            background: #ffffff;
+        }
+
+        .navbar {
+            margin: auto;
+            padding: 0.5rem 1.5rem;
+            background: #ffffff;
+            border-radius: 1rem;
+        }
+
+        .bottom {
+            margin-top: 10px;
+            margin-left: 75.5%;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class = "container">
+        <nav class = "navbar">
+            <div class = "navdiv">
+                <div class = "logo"><a href = "index.html"><img src = "https://github.com/sr120899/Image_mini/blob/main/logo.png?raw=true" height = "50px"></a></div>
+            </div>
+        </nav>
+    </div>
+
+    <div id = "map"></div>
+
+    <script>
+
+        // เรียกแผนที่
+        var map = L.map('map').setView([13.749775, 100.563038], 13);
+    
+        // base map
+        var Esri_WorldTopoMap = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}', {
+            attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ, TomTom, Intermap, iPC, USGS, FAO, NPS, NRCAN, GeoBase, Kadaster NL, Ordnance Survey, Esri Japan, METI, Esri China (Hong Kong), and the GIS User Community'
+        });
+        Esri_WorldTopoMap.addTo(map);
+        var Esri_WorldImagery = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+            attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
+        });
+        var Esri_WorldStreetMap = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
+	        attribution: 'Tiles &copy; Esri &mdash; Source: Esri, DeLorme, NAVTEQ, USGS, Intermap, iPC, NRCAN, Esri Japan, METI, Esri China (Hong Kong), Esri (Thailand), TomTom, 2012'
+        });
+        var googleStreets = L.tileLayer('http://{s}.google.com/vt?lyrs=m&x={x}&y={y}&z={z}',{
+            maxZoom: 20,
+            subdomains:['mt0','mt1','mt2','mt3']
+        });
+        
+        var baseLayers = {
+            "TopoMap" : Esri_WorldTopoMap , 
+            "OSM" : Esri_WorldStreetMap ,
+            "Satellite" : Esri_WorldImagery ,
+            "GoogleOSM" : googleStreets
+        } 
+        L.control.layers(baseLayers).addTo(map);
+
+        const customIcon = L.icon({
+            iconUrl: "https://github.com/sr120899/Image_mini/blob/main/logo1.png?raw=true",
+            iconSize: [50, 50],
+        });
+
+        // เพิ่ม point
+    // 1
+        L.marker([13.719833159485455, 100.5278954220179], {
+            title: " PAPERWORK ",
+            icon: customIcon,
+        }).bindPopup(`
+        <span class = "popup">
+            <br><b><center> PAPERWORK </center></b><hr>
+            <img src = "https://github.com/sr120899/Image_mini/blob/main/1.png?raw=true" width = 300px><br><hr>
+            &nbsp;▪️&nbsp; เปิดให้บริการ วันจันทร์ - ศุกร์ <br> &nbsp;▪️&nbsp; เวลา 9.00 - 18.00 น. <br> &nbsp;▪️&nbsp; เป็น co-working space <br> &nbsp;▪️&nbsp; ใกล้สถานี BTS เซนต์หลุยส์ <br>
+            <br><center><a href = "point1.html" target = "_self"> | read more | </a></center>
+        </span>
+        `).addTo(map)
+
+    // 2
+        L.marker([13.755969, 100.486688], {
+            title: " NAPLAB ",
+            icon: customIcon,
+        }).bindPopup(`
+        <span class = "popup">
+            <br><b><center> NAPLAB </center></b><hr>
+            <img src = "https://github.com/sr120899/Image_mini/blob/main/2.jpg?raw=true" width = 300px><br><hr>
+            &nbsp;▪️&nbsp; เปิดให้บริการทุกวัน ตลอดเวลา 24 ชม. <br> &nbsp;▪️&nbsp; เป็น co-working space <br> &nbsp;▪️&nbsp; มีที่จอดรถให้บริการ<br>
+            <br><center><a href = "point2.html" target = "_self"> | read more | </a></center>
+        </span>
+        `).addTo(map)
+
+    // 3
+        L.marker([13.722249, 100.580118], {
+            title: " PAPER PLANE PROJECT ",
+            icon: customIcon,
+        }).bindPopup(`
+        <span class = "popup">
+            <br><b><center> PAPER PLANE PROJECT </center></b><hr>
+            <img src = "https://github.com/sr120899/Image_mini/blob/main/3.jpg?raw=true" width = 300px><br><hr>
+            &nbsp;▪️&nbsp; เปิดให้บริการ วันจันทร์ - อาทิตย์ <br> &nbsp;▪️&nbsp; เวลา 9.00 - 00.00 น. <br> &nbsp;▪️&nbsp; เป็น cafe ที่มีพื้นที่ co-working space ให้บริการ <br> &nbsp;▪️&nbsp; มีที่จอดรถให้บริการ <br> &nbsp;▪️&nbsp; ใกล้สถานี BTS ทองหล่อ<br>
+            <br><center><a href = "point3.html" target = "_self"> | read more | </a></center>
+        </span>
+        `).addTo(map)
+
+    // 4
+        L.marker([13.7323013520536, 100.57661535313], {
+            title: " THE HIVE THONGLOR ",
+            icon: customIcon,
+        }).bindPopup(`
+        <span class = "popup">
+            <br><b><center> THE HIVE THONGLOR </center></b><hr>
+            <img src = "https://github.com/sr120899/Image_mini/blob/main/4.jpg?raw=true" width = 300px><br><hr>
+            &nbsp;▪️&nbsp; เปิดให้บริการ วันจันทร์ - ศุกร์ <br> &nbsp;▪️&nbsp; เวลา 9.00 - 18.00 น. <br> &nbsp;▪️&nbsp; เป็น co-working space <br> &nbsp;▪️&nbsp; มี cafe ให้บริการ<br>
+            <br><center><a href = "point4.html" target = "_self"> | read more | </a></center>
+        </span>
+        `).addTo(map)
+
+    // 5
+        L.marker([13.743005, 100.529727], {
+            title: " TTA SPACE BY DRAFTBOARD ",
+            icon: customIcon,
+        }).bindPopup(`
+        <span class = "popup">
+            <br><b><center> TTA SPACE BY DRAFTBOARD </center></b><hr>
+            <img src = "https://github.com/sr120899/Image_mini/blob/main/5.jpg?raw=true" width = 300px><br><hr>
+            &nbsp;▪️&nbsp; เปิดให้บริการ วันจันทร์ - อาทิตย์ <br> &nbsp;▪️&nbsp; เวลา 10.00 - 20.00 น. <br> &nbsp;▪️&nbsp; เป็น co-working space <br> &nbsp;▪️&nbsp; มีที่จอดรถให้บริการ <br> &nbsp;▪️&nbsp; ใกล้สถานี BTS สนามกีฬาแห่งชาติ<br>
+            <br><center><a href = "point5.html" target = "_self"> | read more | </a></center>
+        </span>
+        `).addTo(map)
+
+    // 6
+        L.marker([13.753700, 100.531626], {
+            title: " WEWORK SPRING TOWER ",
+            icon: customIcon,
+        }).bindPopup(`
+        <span class = "popup">
+            <br><b><center> WEWORK SPRING TOWER </center></b><hr>
+            <img src = "https://github.com/sr120899/Image_mini/blob/main/6.jpg?raw=true" width = 300px><br><hr>
+            &nbsp;▪️&nbsp; เปิดให้บริการ วันจันทร์ - ศุกร์ <br> &nbsp;▪️&nbsp; เวลา 9.00 - 18.00 น. <br> &nbsp;▪️&nbsp; เป็น co-working space <br> &nbsp;▪️&nbsp; ใกล้สถานี BTS ราชเทวี<br>
+            <br><center><a href = "point6.html" target = "_self"> | read more | </a></center>
+        </span>
+        `).addTo(map)
+
+    // 7
+        L.marker([13.721492, 100.524205], {
+            title: " LAUNCHPAD ",
+            icon: customIcon,
+        }).bindPopup(`
+        <span class = "popup">
+            <br><b><center> LAUNCHPAD </center></b><hr>
+            <img src = "https://github.com/sr120899/Image_mini/blob/main/7.jpg?raw=true" width = 300px><br><hr>
+            &nbsp;▪️&nbsp; เปิดให้บริการ วันจันทร์ - ศุกร์ <br> &nbsp;▪️&nbsp; เวลา 9.00 - 18.00 น. <br> &nbsp;▪️&nbsp; เป็น co-working space <br> &nbsp;▪️&nbsp; มีที่จอดรถให้บริการ<br>
+            <br><center><a href = "point7.html" target = "_self"> | read more | </a></center>
+        </span>
+        `).addTo(map)
+
+    // 8
+        L.marker([13.719951, 100.527123], {
+            title: " JUSTCO | AIA SATHORN TOWER ",
+            icon: customIcon,
+        }).bindPopup(`
+        <span class = "popup">
+            <br><b><center> JUSTCO | AIA SATHORN TOWER </center></b><hr>
+            <img src = "https://github.com/sr120899/Image_mini/blob/main/8.jpg?raw=true" width = 300px><br><hr>
+            &nbsp;▪️&nbsp; เปิดให้บริการ วันจันทร์ - ศุกร์ <br> &nbsp;▪️&nbsp; เวลา 8.30 - 18.00 น. <br> &nbsp;▪️&nbsp; เป็น co-working space <br> &nbsp;▪️&nbsp; มีที่จอดรถให้บริการ <br> &nbsp;▪️&nbsp; ใกล้สถานี BTS ช่องนนทรี<br>
+            <br><center><a href = "point8.html" target = "_self"> | read more | </a></center>
+        </span>
+        `).addTo(map)
+
+    // 9
+        L.marker([13.793799, 100.547441], {
+            title: " MUCHROOM COWORKING SPACE ",
+            icon: customIcon,
+        }).bindPopup(`
+        <span class = "popup">
+            <br><b><center> MUCHROOM COWORKING SPACE </center></b><hr>
+            <img src = "https://github.com/sr120899/Image_mini/blob/main/9.jpg?raw=true" width = 300px><br><hr>
+            <br>
+            <br><center><a href = "point9.html" target = "_self"> | read more | </a></center>
+        </span>
+        `).addTo(map)
+
+    // 10
+        L.marker([13.685295, 100.611812], {
+            title: "TRUE DIGITAL PARK",
+            icon: customIcon,
+        }).bindPopup(`
+        <span class = "popup">
+            <br><b><center> TRUE DIGITAL PARK </center></b><hr>
+            <img src = "https://github.com/sr120899/Image_mini/blob/main/10.jpg?raw=true" width = 300px><br><hr>
+            &nbsp;▪️&nbsp; เปิดให้บริการ วันจันทร์ - อาทิตย์ <br> &nbsp;▪️&nbsp; เวลา 9.00 - 18.00 น. <br> &nbsp;▪️&nbsp; เป็น co-working space <br> &nbsp;▪️&nbsp; มี cafe ให้บริการ <br> &nbsp;▪️&nbsp; มีที่จอดรถให้บริการ <br> &nbsp;▪️&nbsp; ใกล้สถานี BTS ปุณณวิถี<br>
+            <br><center><a href = "point10.html" target = "_self"> | read more | </a></center>
+        </span>
+        `).addTo(map)
+
+    // 11
+        L.marker([13.748310, 100.646461], {
+            title: " SOCIALPACK CO-WORKING SPACE ",
+            icon: customIcon,
+        }).bindPopup(`
+        <span class = "popup">
+            <br><b><center> SOCIALPACK CO-WORKING SPACE </center></b><hr>
+            <img src = "https://github.com/sr120899/Image_mini/blob/main/11.jpg?raw=true " width = 300px><br><hr>
+		    &nbsp;▪️&nbsp; เปิดให้บริการ วันพุธ - จันทร์ <br> &nbsp;▪️&nbsp; เวลา 10.00 - 19.00 น. <br> &nbsp;▪️&nbsp; เป็น co-working space <br> &nbsp;▪️&nbsp; มี cafe ให้บริการ <br> &nbsp;▪️&nbsp; มีที่จอดรถให้บริการ
+            <br>
+            <br><center><a href = "point11.html" target = "_self"> | read more | </a></center>
+        </span>
+        `).addTo(map)
+
+    // 12
+        L.marker([13.681674, 100.610918], {
+            title: " CO-WORKING SPACE & CAFE ",
+            icon: customIcon,
+        }).bindPopup(`
+        <span class = "popup">
+            <br><b><center> CO-WORKING SPACE & CAFE </center></b><hr>
+            <img src = "https://github.com/sr120899/Image_mini/blob/main/12.jpg?raw=true " width = 300px><br><hr>
+		    &nbsp;▪️&nbsp; เปิดให้บริการ วันพุธ - จันทร์ <br> &nbsp;▪️&nbsp; เวลา 10.00 - 19.00 น. <br> &nbsp;▪️&nbsp; เป็น co-working space <br> &nbsp;▪️&nbsp; มีที่จอดรถให้บริการ <br>
+            <br><center><a href = "point12.html" target = "_self"> | read more | </a></center>
+        </span>
+        `).addTo(map)
+
+    // 13
+        L.marker([13.752518, 100.639094], {
+            title: " VICHSPACE ",
+            icon: customIcon,
+        }).bindPopup(`
+        <span class = "popup">
+            <br><b><center> VICHSPACE </center></b><hr>
+            <img src = "https://github.com/sr120899/Image_mini/blob/main/13.jpg?raw=true " width = 300px><br><hr>
+		    &nbsp;▪️&nbsp; เปิดให้บริการ วันจันทร์ - อาทิตย์ <br> &nbsp;▪️&nbsp; เวลา 7.00 - 20.00 น. <br> &nbsp;▪️&nbsp; เป็น cafe ที่มีพื้นที่ co-working space ให้บริการ <br> &nbsp;▪️&nbsp; มีที่จอดรถให้บริการ <br>
+            <br><center><a href = "point13.html" target = "_self"> | read more | </a></center>
+        </span>
+        `).addTo(map)
+
+    // 14
+        L.marker([13.714818, 100.539710], {
+            title: " COQOON SPACE & CAFE ",
+            icon: customIcon,
+        }).bindPopup(`
+        <span class = "popup">
+            <br><b><center> COQOON SPACE & CAFE </center></b><hr>
+            <img src = "https://github.com/sr120899/Image_mini/blob/main/14.jpg?raw=true" width = 300px " width = 300px><br><hr>
+		    &nbsp;▪️&nbsp; เปิดให้บริการ วันจันทร์ - อาทิตย์ <br> &nbsp;▪️&nbsp; เวลา 8.00 - 23.00 น. <br> &nbsp;▪️&nbsp; เป็น cafe ที่มีพื้นที่ co-working space ให้บริการ <br> &nbsp;▪️&nbsp; มีที่จอดรถให้บริกา <br>
+            <br><center><a href = "point14.html" target = "_self"> | read more | </a></center>
+        </span>
+        `).addTo(map)
+
+    // 15
+        L.marker([13.748191, 100.646671], {
+            title: " BLANC EATERY & CAFE ",
+            icon: customIcon,
+        }).bindPopup(`
+        <span class = "popup">
+            <br><b><center> BLANC EATERY & CAFE </center></b><hr>
+            <img src = " https://github.com/sr120899/Image_mini/blob/main/15.jpg?raw=true " width = 300px><br><hr>
+		    &nbsp;▪️&nbsp; เปิดให้บริการ วันพุธ - จันทร์ <br> &nbsp;▪️&nbsp; เวลา 10.00 - 19.00 น. <br> &nbsp;▪️&nbsp; เป็น cafe ที่มีพื้นที่ co-working space ให้บริการ
+            <br>
+            <br><center><a href = "point15.html" target = "_self"> | read more | </a></center>
+        </span>
+        `).addTo(map)
+
+    // 16
+        L.marker([13.927678, 100.537247], {
+            title: " SLOT CO-WORKING SPACE & CAFE ",
+            icon: customIcon,
+        }).bindPopup(`
+        <span class = "popup">
+            <br><b><center> SLOT CO-WORKING SPACE & CAFE </center></b><hr>
+            <img src = "https://github.com/sr120899/Image_mini/blob/main/16.jpg?raw=true " width = 300px><br><hr>
+		    &nbsp;▪️&nbsp; เปิดให้บริการ วันจันทร์ - ศุกร์ <br> &nbsp;▪️&nbsp; เวลา 8.00 - 19.00 น. <br> &nbsp;▪️&nbsp; เป็น cafe ที่มีพื้นที่ co-working space ให้บริการ
+            <br>
+            <br><center><a href = "point16.html" target = "_self"> | read more | </a></center>
+        </span>
+        `).addTo(map)
+    
+    // 17
+    L.marker([13.921468, 100.660933], {
+            title: " THE BRIDGE BISTRO & OFFICE SPACE ",
+            icon: customIcon,
+        }).bindPopup(`
+        <span class = "popup">
+            <br><b><center> THE BRIDGE BISTRO & OFFICE SPACE </center></b><hr>
+            <img src = " https://github.com/sr120899/Image_mini/blob/main/17.jpg?raw=true " width = 300px><br><hr>
+		    &nbsp;▪️&nbsp; เปิดให้บริการ วันพุธ - จันทร์ <br> &nbsp;▪️&nbsp; เวลา 9.00 - 21.00 น. <br> &nbsp;▪️&nbsp; เป็น cafe ที่มีพื้นที่ co-working space ให้บริการ
+            <br>
+            <br><center><a href = "point17.html" target = "_self"> | read more | </a></center>
+        </span>
+        `).addTo(map)
+    
+    // 18
+        L.marker([13.697317, 100.619562], {
+            title: " ITTHA BOUTIQUE CAFE ",
+            icon: customIcon,
+        }).bindPopup(`
+        <span class = "popup">
+            <br><b><center> ITTHA BOUTIQUE CAFE </center></b><hr>
+            <img src = " https://github.com/sr120899/Image_mini/blob/main/18.jpg?raw=true " width = 300px><br><hr>
+		    &nbsp;▪️&nbsp; เปิดให้บริการ วันจันทร์ - อาทิตย์ <br> &nbsp;▪️&nbsp; เวลา 8.00 - 17.00 น. <br> &nbsp;▪️&nbsp; เป็น cafe ที่มีพื้นที่ co-working space ให้บริการ <br> &nbsp;▪️&nbsp; มีที่จอดรถให้บริการ <br> &nbsp;▪️&nbsp; ใกล้สถานี BTS ปุณณวิถี
+            <br>
+            <br><center><a href = "point18.html" target = "_self"> | read more | </a></center>
+        </span>
+        `).addTo(map)
+
+    // 19
+        L.marker([13.742760, 100.524622], {
+            title: " DICE CAFE ",
+            icon: customIcon,
+        }).bindPopup(`
+        <span class = "popup">
+            <br><b><center> DICE CAFE </center></b><hr>
+            <img src = "https://github.com/sr120899/Image_mini/blob/main/19.jpg?raw=true " width = 300px><br><hr>
+		    &nbsp;▪️&nbsp; เปิดให้บริการ วันจันทร์ - อาทิตย์ <br> &nbsp;▪️&nbsp; เวลา 8.00 - 19.00 น. <br> &nbsp;▪️&nbsp; เป็น cafe ที่มีพื้นที่ co-working space ให้บริการ
+            <br>
+            <br><center><a href = "point19.html" target = "_self"> | read more | </a></center>
+        </span>
+        `).addTo(map)
+
+    // 20
+        L.marker([13.780813, 100.549544], {
+            title: " BEAKER AND BITTER ",
+            icon: customIcon,
+        }).bindPopup(`
+        <span class = "popup">
+            <br><b><center> BEAKER AND BITTER </center></b><hr>
+            <img src = "https://github.com/sr120899/Image_mini/blob/main/20.jpg?raw=true " width = 300px><br><hr>
+		&nbsp;▪️&nbsp; เปิดให้บริการ วันจันทร์ - อาทิตย์ <br> &nbsp;▪️&nbsp; เวลา 8.00 - 20.00 น. <br> &nbsp;▪️&nbsp; เป็น cafe ที่มีพื้นที่ co-working space ให้บริการ <br> &nbsp;▪️&nbsp; ใกล้สถานี BTS อารีย์
+            <br>
+            <br><center><a href = "point20.html" target = "_self"> | read more | </a></center>
+        </span>
+        `).addTo(map)
+
+    // 21
+        L.marker([13.744431, 100.532602], {
+            title: " KLOUD BY KBANK ",
+            icon: customIcon,
+        }).bindPopup(`
+        <span class = "popup">
+            <br><b><center> KLOUD BY KBANK </center></b><hr>
+            <img src = " https://github.com/sr120899/Image_mini/blob/main/21.jpg?raw=true " width = 300px><br><hr>
+		    &nbsp;▪️&nbsp; เปิดให้บริการ วันจันทร์ - อาทิตย์ <br> &nbsp;▪️&nbsp; เวลา 11.00 - 18.00 น. <br> &nbsp;▪️&nbsp; เป็น co-working space <br> &nbsp;▪️&nbsp; ใกล้สถานี BTS สยาม
+            <br>
+            <br><center><a href = "point21.html" target = "_self"> | read more | </a></center>
+        </span>
+        `).addTo(map)
+
+    // 22
+        L.marker([13.744761, 100.529868], {
+            title: " MONKEYEVERYDAY LEARNING SPACE ",
+            icon: customIcon,
+        }).bindPopup(`
+        <span class = "popup">
+            <br><b><center> MONKEYEVERYDAY LEARNING SPACE </center></b><hr>
+            <img src = "https://github.com/sr120899/Image_mini/blob/main/22.jpg?raw=true " width = 300px><br><hr>
+		    &nbsp;▪️&nbsp; เปิดให้บริการ วันจันทร์ - อาทิตย์ <br> &nbsp;▪️&nbsp; เวลา 10.00 - 19.00 น. <br> &nbsp;▪️&nbsp; เป็น co-working space <br> &nbsp;▪️&nbsp; ใกล้สถานี BTS สนามกีฬาแห่งชาติ
+            <br>
+            <br><center><a href = "point22.html" target = "_self"> | read more | </a></center>
+        </span>
+        `).addTo(map)
+
+    // 23
+    L.marker([13.744961, 100.531626], {
+            title: " TOO FAST TO SLEEP - SIAM ",
+            icon: customIcon,
+        }).bindPopup(`
+        <span class = "popup">
+            <br><b><center> TOO FAST TO SLEEP - SIAM </center></b><hr>
+            <img src = " https://github.com/sr120899/Image_mini/blob/main/23.jpg?raw=true " width = 300px><br><hr>
+		    &nbsp;▪️&nbsp; เปิดให้บริการ วันจันทร์ - อาทิตย์ <br> &nbsp;▪️&nbsp; เวลา 9.00 - 20.00 น. <br> &nbsp;▪️&nbsp; เป็น cafe ที่มีพื้นที่ co-working space ให้บริการ <br> &nbsp;▪️&nbsp; ใกล้สถานี BTS สยาม
+            <br>
+            <br><center><a href = "point23.html" target = "_self"> | read more | </a></center>
+        </span>
+        `).addTo(map)
+
+    // 24
+        L.marker([13.723556, 100.530447], {
+            title: " GlOWFISH SATHON ",
+            icon: customIcon,
+        }).bindPopup(`
+        <span class = "popup">
+            <br><b><center> GlOWFISH SATHON </center></b><hr>
+            <img src = " https://github.com/sr120899/Image_mini/blob/main/24.jpg?raw=true " width = 300px><br><hr>
+		    &nbsp;▪️&nbsp; เปิดให้บริการ วันจันทร์ - ศุกร์ <br> &nbsp;▪️&nbsp; เวลา 8.30 - 17.30 น. <br> &nbsp;▪️&nbsp; เป็น co-working space <br> &nbsp;▪️&nbsp; มี cafe ให้บริการ <br> &nbsp;▪️&nbsp; ใกล้สถานี BTS ช่องนนทรี
+            <br>
+            <br><center><a href = "point24.html" target = "_self"> | read more | </a></center>
+        </span>
+        `).addTo(map)
+
+    // 25
+        L.marker([13.724362, 100.583440], {
+            title: " UNIONSPACE EKKAMAI (HQ) ",
+            icon: customIcon,
+        }).bindPopup(`
+        <span class = "popup">
+            <br><b><center> UNIONSPACE EKKAMAI (HQ)  </center></b><hr>
+            <img src = " https://github.com/sr120899/Image_mini/blob/main/25.jpg?raw=true " width = 300px><br><hr>
+		    &nbsp;▪️&nbsp; เปิดให้บริการ วันจันทร์ - เสาร์ <br> &nbsp;▪️&nbsp; เวลา 8.30 - 18.30 น. ( วันเสาร์ 9.00 - 18.00 น.)  <br> &nbsp;▪️&nbsp; เป็น co-working space <br> &nbsp;▪️&nbsp; ใกล้สถานี BTS เอกมัย
+            <br>
+            <br><center><a href = "point25.html" target = "_self"> | read more | </a></center>
+        </span>
+        `).addTo(map)
+
+    // 26
+    L.marker([13.792389, 100.535999], {
+            title: " KO KREATE SPACE ",
+            icon: customIcon,
+        }).bindPopup(`
+        <span class = "popup">
+            <br><b><center> KO KREATE SPACE </center></b><hr>
+            <img src = " https://github.com/sr120899/Image_mini/blob/main/26.jpg?raw=true " width = 300px><br><hr>
+		    &nbsp;▪️&nbsp; เปิดให้บริการ วันจันทร์ - เสาร์ <br> &nbsp;▪️&nbsp; เวลา 9.00 - 20.00 น. <br> &nbsp;▪️&nbsp; เป็น co-working space
+            <br>
+            <br><center><a href = "point26.html" target = "_self"> | read more | </a></center>
+        </span>
+        `).addTo(map)
+
+    // 27
+        L.marker([13.729764, 100.571460], {
+            title: " THE URBAN OFFICE ",
+            icon: customIcon,
+        }).bindPopup(`
+        <span class = "popup">
+            <br><b><center> THE URBAN OFFICE </center></b><hr>
+            <img src = " https://github.com/sr120899/Image_mini/blob/main/27.jpg?raw=true " width = 300px><br><hr>
+		    &nbsp;▪️&nbsp; เปิดให้บริการ วันจันทร์ - ศุกร์ <br> &nbsp;▪️&nbsp; เวลา 8.30 - 17.30 น. <br> &nbsp;▪️&nbsp; เป็น co-working space <br> &nbsp;▪️&nbsp; ใกล้สถานี BTS อโศก และ MRT สุขุมวิท
+            <br>
+            <br><center><a href = "point27.html" target = "_self"> | read more | </a></center>
+        </span>
+        `).addTo(map)
+
+    // 28
+        L.marker([13.769935, 100.572503], {
+            title: " WORKWIZE CO-WORKING SPACE ",
+            icon: customIcon,
+        }).bindPopup(`
+        <span class = "popup">
+            <br><b><center> WORKWIZE CO-WORKING SPACE </center></b><hr>
+            <img src = " https://github.com/sr120899/Image_mini/blob/main/28.jpg?raw=true " width = 300px><br><hr>
+		    &nbsp;▪️&nbsp; เปิดให้บริการทุกวัน ตลอดเวลา 24 ชม. <br> &nbsp;▪️&nbsp; เป็น co-working space <br> &nbsp;▪️&nbsp; ใกล้สถานี MRT ศูนย์วัฒนธรรม
+            <br>
+            <br><center><a href = "point28.html" target = "_self"> | read more | </a></center>
+        </span>
+        `).addTo(map)
+
+    // 29
+        L.marker([13.811548, 100.577479], {
+            title: " MAVEN MESH CO-WORKING SPACE & CAFE ",
+            icon: customIcon,
+        }).bindPopup(`
+        <span class = "popup">
+            <br><b><center> MAVEN MESH CO-WORKING SPACE & CAFE </center></b><hr>
+            <img src = " https://github.com/sr120899/Image_mini/blob/main/29.jpg?raw=true " width = 300px><br><hr>
+		    &nbsp;▪️&nbsp; เปิดให้บริการทุกวัน <br> &nbsp;▪️&nbsp; เวลา 9.00 - 18.00 น. <br> &nbsp;▪️&nbsp; เป็น co-working space <br> &nbsp;▪️&nbsp; มีที่จอดรถให้บริการ <br> &nbsp;▪️&nbsp; ใกล้สถานี MRT ลาดพร้าว
+            <br>
+            <br><center><a href = "point29.html" target = "_self"> | read more | </a></center>
+        </span>
+        `).addTo(map)
+
+    // 30
+        L.marker([13.728077, 100.533941], {
+            title: " THE WORK LOFT SILOM ",
+            icon: customIcon,
+        }).bindPopup(`
+        <span class = "popup">
+            <br><b><center> THE WORK LOFT SILOM </center></b><hr>
+            <img src = " https://github.com/sr120899/Image_mini/blob/main/30.jpg?raw=true " width = 300px><br><hr>
+		    &nbsp;▪️&nbsp; เปิดให้บริการทุกวัน ตลอดเวลา 24 ชม. <br> &nbsp;▪️&nbsp; เป็น co-working space <br> &nbsp;▪️&nbsp; ใกล้สถานี BTS สีลม
+            <br>
+            <br><center><a href = "point30.html" target = "_self"> | read more | </a></center>
+        </span>
+        `).addTo(map)
+
+    // 31
+    L.marker([13.702856, 100.602043], {
+            title: " THE PHYLL CONNECT ",
+            icon: customIcon,
+        }).bindPopup(`
+        <span class = "popup">
+            <br><b><center> THE PHYLL CONNECT </center></b><hr>
+            <img src = " https://github.com/sr120899/Image_mini/blob/main/31.jpg?raw=true " width = 300px><br><hr>
+		    &nbsp;▪️&nbsp; เปิดให้บริการ วันจันทร์ - อาทิตย์ <br> &nbsp;▪️&nbsp; เวลา 9.00 - 19.00 น. <br> &nbsp;▪️&nbsp; เป็น co-working space
+            <br>
+            <br><center><a href = "point31.html" target = "_self"> | read more | </a></center>
+        </span>
+        `).addTo(map)
+
+    // 32
+        L.marker([13.745767, 100.540696], {
+            title: " THE GREAT ROOM GAYSORN TOWER | COWORKING, HOT DESK & MEETING SPACES ",
+            icon: customIcon,
+        }).bindPopup(`
+        <span class = "popup">
+            <br><b><center> THE GREAT ROOM GAYSORN TOWER | COWORKING, HOT DESK & MEETING SPACES </center></b><hr>
+            <img src = " https://github.com/sr120899/Image_mini/blob/main/32.jpg?raw=true " width = 300px><br><hr>
+		    &nbsp;▪️&nbsp; เปิดให้บริการ วันจันทร์ - ศุกร์ <br> &nbsp;▪️&nbsp; เวลา 9.00 - 18.00 น. <br> &nbsp;▪️&nbsp; เป็น co-working space <br> &nbsp;▪️&nbsp; ใกล้สถานี BTS ชิดลม
+            <br>
+            <br><center><a href = "point32.html" target = "_self"> | read more | </a></center>
+        </span>
+        `).addTo(map)
+
+    // 33
+    L.marker([13.734581, 100.560342], {
+            title: " FABBIT GLOBAL GATEWAY BANGKOK",
+            icon: customIcon,
+        }).bindPopup(`
+        <span class = "popup">
+            <br><b><center> FABBIT GLOBAL GATEWAY "BANGKOK"</center></b><hr>
+            <img src = " https://github.com/sr120899/Image_mini/blob/main/33.jpg?raw=true " width = 300px><br><hr>
+		    &nbsp;▪️&nbsp; เปิดให้บริการ วันจันทร์ - ศุกร์ <br> &nbsp;▪️&nbsp; เวลา 9.00 - 20.00 น. <br> &nbsp;▪️&nbsp; เป็น co-working space <br> &nbsp;▪️&nbsp; มีที่จอดรถให้บริการ <br> &nbsp;▪️&nbsp; ใกล้สถานี BTS อโศก
+            <br>
+            <br><center><a href = "point33.html" target = "_self"> | read more | </a></center>
+        </span>
+        `).addTo(map)
+    
+    // 34
+        L.marker([13.733729, 100.528211], {
+            title: " SAMYAN CO-OP ",
+            icon: customIcon,
+        }).bindPopup(`
+        <span class = "popup">
+            <br><b><center> SAMYAN CO-OP </center></b><hr>
+            <img src = " https://github.com/sr120899/Image_mini/blob/main/34.jpg?raw=true " width = 300px><br><hr>
+		    &nbsp;▪️&nbsp; เปิดให้บริการ วันจันทร์ - อาทิตย์ <br> &nbsp;▪️&nbsp; เวลา 6.00 - 4.30 น. <br> &nbsp;▪️&nbsp; เป็น co-working space <br> &nbsp;▪️&nbsp; มี cafe ให้บริการ <br> &nbsp;▪️&nbsp; ใกล้สถานี MRT สามย่าน
+            <br>
+            <br><center><a href = "point34.html" target = "_self"> | read more | </a></center>
+        </span>
+        `).addTo(map)
+
+    // 35
+        L.marker([13.767569, 100.498450], {
+            title: "ศูนย์การเรียนรู้ ธนาคารแห่งประเทศไทย ",
+            icon: customIcon,
+        }).bindPopup(`
+        <span class = "popup">
+            <br><b><center> ศูนย์การเรียนรู้ ธนาคารแห่งประเทศไทย </center></b><hr>
+            <img src = " https://github.com/sr120899/Image_mini/blob/main/35.jpg?raw=true " width = 300px><br><hr>
+		    &nbsp;▪️&nbsp; เปิดให้บริการ วันอังคาร - อาทิตย์ <br> &nbsp;▪️&nbsp; เวลา 9.30 - 20.00 น. <br> &nbsp;▪️&nbsp; เป็นห้องสมุดที่มีพื้นที่ co-working space ให้บริการ
+            <br>
+            <br><center><a href = "point35.html" target = "_self"> | read more | </a></center>
+        </span>
+        `).addTo(map)
+
+    // 36
+        L.marker([13.757797, 100.498262], {
+            title: "หอสมุดเมืองกรุงเทพมหานคร",
+            icon: customIcon,
+        }).bindPopup(`
+        <span class = "popup">
+            <br><b><center> หอสมุดเมืองกรุงเทพมหานคร </center></b><hr>
+            <img src = " https://github.com/sr120899/Image_mini/blob/main/36.jpg?raw=true " width = 300px><br><hr>
+		    &nbsp;▪️&nbsp; เปิดให้บริการ วันอังคาร - อาทิตย์ <br> &nbsp;▪️&nbsp; เวลา 8.00 - 21.00 น. (วันอาทิตย์ 8.00 - 20.00 น.) <br> &nbsp;▪️&nbsp; เป็นห้องสมุดที่มีพื้นที่ co-working space ให้บริการ
+            <br>
+            <br><center><a href = "point36.html" target = "_self"> | read more | </a></center>
+        </span>
+        `).addTo(map)
+
+        var legend = L.control({position: 'topright'});
+                legend.onAdd = function(map){
+            
+        var div = L.DomUtil.create('div', 'legend');
+                div.innerHTML = 
+                '<p><b><center>Legend</center></b></p>' +
+                '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="https://github.com/sr120899/Image_mini/blob/main/logo1.png?raw=true" width = 13%>' +
+                '&nbsp;&nbsp;&nbsp;&nbsp;co-working space';
+            return div;
+            };
+            legend.addTo(map);
+    </script>
+
+    <div class = "bottom">
+        <img src = "https://github.com/sr120899/Image_mini/blob/main/credit.png?raw=true" height = 6%>
+        <img src = "https://unity.swu.ac.th/wp-content/uploads/2020/07/SWU_Logo_EN_Color.png" height = 7%>
+    </div>
+
+</body>
+
+</html>
